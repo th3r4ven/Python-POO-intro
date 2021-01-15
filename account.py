@@ -14,4 +14,7 @@ class Account:
 
 
 if __name__ == '__main__':
-    Account(666, "Raven", 10000000, 999999)
+    account = Account(666, "Raven", 10000000, 999999)
+
+    # Accessing class attribute
+    print(account.balance)
