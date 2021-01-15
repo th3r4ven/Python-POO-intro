@@ -4,36 +4,37 @@ from dates import Date
 class Account:
 
     def __init__(self, number, owner, balance, limit):
-        self.number = number  # Class Attribute
-        self.owner = owner
-        self.balance = balance
-        self.limit = limit
+        self.__number = number  # Class Attribute
+        self.__owner = owner
+        self.__balance = balance
+        self.__limit = limit
 
     def deposit(self, value):
-        self.balance += value
+        self.__balance += value
         print("Successful, you deposit " + str(value) + " in your account")
 
     def withdraw(self, value):
-        if value <= self.balance:
-            self.balance -= value
+        if value <= self.__balance:
+            self.__balance -= value
             print("You withdraw $" + str(value))
         else:
             print("Not enough balance")
 
     def statement(self):
-        print("Your bank statement is " + str(self.balance))
+        print("Your bank statement is " + str(self.__balance))
+
+    def transfer(self, value, acc):
+        self.withdraw(value)
+        acc.deposit(value)
 
 
 if __name__ == '__main__':
     account = Account(666, "Raven", 15, 999999)
-
-    # Accessing class attribute
-    print("Accessing attribute directly: " + str(account.balance))
-
+    account2 = Account(555, 'Owner 2', 15, 90)
     # Accessing class method (class functions)
     account.statement()
-
-    account.withdraw(10)
+    account.transfer(15, account2)
+    account2.withdraw(10)
     account.deposit(100)
     account.statement()
 
