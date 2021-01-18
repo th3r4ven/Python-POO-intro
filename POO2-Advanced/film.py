@@ -52,13 +52,19 @@ class Playlist:
         self.name = name
         self._programs = programs
 
-    @property
-    def queue(self):
-        return self._programs
+    def __getitem__(self, item):
+        return self._programs[item]
 
-    @property
-    def size(self):
+    def __len__(self):
         return len(self._programs)
+
+    # @property
+    # def queue(self):
+    #     return self._programs
+    #
+    # @property
+    # def size(self):
+    #     return len(self._programs)
 
 
 if __name__ == '__main__':
@@ -74,9 +80,10 @@ if __name__ == '__main__':
     vikings.give_like()
     vikings.give_like()
 
-    films_and_series = [avengers, spiderman, vikings,atlanta]
+    films_and_series = [avengers, spiderman, vikings, atlanta]
 
-    weekend_playlist = Playlist('Weekend with my PC, cuz programmers don\'t have a girlfriend', films_and_series)
+    weekend_playlist = Playlist('Playlist name: Weekend with my PC, cuz programmers don\'t have girlfriends', films_and_series)
 
-    for program in weekend_playlist.queue:
+    print(weekend_playlist.name + "\n")
+    for program in weekend_playlist:
         print(program)
